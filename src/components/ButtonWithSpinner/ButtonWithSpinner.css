@@ -1,0 +1,8 @@
+.spinner-button {
+  min-width: 200px;
+  max-height: 36px;
+
+  .spinner {
+    transform: scale(0.5);
+  }
+}

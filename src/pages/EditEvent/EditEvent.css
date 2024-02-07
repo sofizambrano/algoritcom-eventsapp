@@ -1,0 +1,5 @@
+.delete-button-container {
+  margin: 20px 20px 10px;
+  display: flex;
+  justify-content: end;
+}

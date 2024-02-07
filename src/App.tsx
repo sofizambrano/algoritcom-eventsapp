@@ -7,13 +7,14 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
+  setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { calendar, create } from 'ionicons/icons';
+
+import Events from './pages/Events/Events';
+import NewEvent from './pages/NewEvent/NewEvent';
+import EditEvent from './pages/EditEvent/EditEvent';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,6 +34,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { EventsContextProvider } from './contexts/EventsContext';
 
 setupIonicReact();
 
@@ -41,31 +43,29 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
+          <EventsContextProvider>
+            <Route exact path="/events">
+              <Events />
+            </Route>
+            <Route exact path="/newevent">
+              <NewEvent />
+            </Route>
+            <Route exact path="/editevent/:id">
+              <EditEvent />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/events" />
+            </Route>
+          </EventsContextProvider>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+        <IonTabBar slot="bottom" color="dark">
+          <IonTabButton tab="events" href="/events">
+            <IonIcon aria-hidden="true" icon={calendar} size="small" />
+            <IonLabel>Events</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="newevent" href="/newevent">
+            <IonIcon aria-hidden="true" icon={create} size="small" />
+            <IonLabel>Create</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

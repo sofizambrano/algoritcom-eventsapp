@@ -1,0 +1,16 @@
+.image-input {
+  display: none;
+}
+
+.selected-image {
+  max-width: 200px;
+  height: 100px;
+  object-fit: cover;
+  margin: 4px 0;
+}
+
+.submit-button-container {
+  margin: 30px 10px 10px;
+  display: flex;
+  justify-content: end;
+}
